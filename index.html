@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <script src="../angular.js"></script>
+    <script src="app/cart.js"></script>
+    <link rel="stylesheet" href="app/bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+<body ng-app="myApp">
+    <div class="container" ng-controller="oneController">
+        <table class="table" ng-show="cart.length">
+           <thead>
+                <tr>
+                    <th>产品编号</th>
+                    <th>产品名称</th>
+                    <th>产品数量</th>
+                    <th>产品单价</th>
+                    <th>产品总价</th>
+                    <th>产品操作</th>
+                </tr>
+           </thead>
+            <tbody>
+                <tr ng-repeat="i in cart">
+                    <td>{{i.id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>
+                        <button type="button" class="btn btn-info" ng-click="jian(i.id)">-</button>
+                        <input type="text" ng-model="i.quantity">
+                        <button type="button" class="btn btn-info" ng-click="jia(i.id)">+</button>
+                    </td>
+                    <td>{{i.price}}</td>
+                    <td>{{i.quantity*i.price}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" ng-click="remove(i.id)">移除</button>
+                    </td>
+                </tr>
+            <tr>
+                <td>总价</td>
+                <td>{{totalPrice()}}</td>
+                <td>总数</td>
+                <td>{{totalQuantity()}}</td>
+                <td></td>
+                <td> <button type="button" class="btn btn-danger" ng-click="cart={}">删除全部</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <img ng-hide="cart.length" ng-src="img/aaa.jpg" alt="" style="width: 80%;height: 500px; ">
+        <p ng-hide="cart.length" style="float: right;font-size: 30px;margin: 100px auto;color: crimson">你的购物车为空</p>
+
+    </div>
+</div>
+</body>
+</html>
